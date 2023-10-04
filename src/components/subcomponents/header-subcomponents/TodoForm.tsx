@@ -1,9 +1,11 @@
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../../../store/slices/listSlice';
+import { useForm } from '../../../hooks/useForm';
 
 const TodoForm = () => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
+	const { isValid, checkFormValidity } = useForm();
 
 	const dispatch = useDispatch();
 
@@ -13,7 +15,12 @@ const TodoForm = () => {
 		if (inputRef && inputRef.current) {
 			const inputValue = inputRef.current.value;
 
-			inputValue.trim().length === 0 && console.log('error');
+			checkFormValidity(inputValue);
+
+			if (!isValid) {
+				console.log('error');
+				return;
+			}
 
 			const newTodo = {
 				id: Math.random().toString(),
@@ -22,6 +29,7 @@ const TodoForm = () => {
 			};
 
 			dispatch(addTask(newTodo));
+			inputRef.current.value = '';
 		}
 	};
 
