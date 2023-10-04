@@ -25,7 +25,7 @@ form:focus-within {
 }
 
 .dark .delete-btn svg {
-	stroke: #777a92;
+	stroke: #393a4c
 }
 
 .delete-btn:hover svg,
