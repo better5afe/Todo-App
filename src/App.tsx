@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { setInitialMode } from './utils/mode-functions';
+import Header from './components/Header';
+import Main from './components/Main';
 
 export const App = () => {
 	useEffect(() => {
@@ -7,9 +9,10 @@ export const App = () => {
 	}, []);
 
 	return (
-		<main>
-			testestest
-		</main>
+		<>
+			<Header />
+			<Main />
+		</>
 	);
 };
 
