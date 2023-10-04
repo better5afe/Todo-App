@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-mobile-light {
+	background-image: url('./assets/images/bg-mobile-light.jpg');
+}
+
+.bg-mobile-dark {
+	background-image: url('./assets/images/bg-mobile-dark.jpg');
+}
+
+.bg-desktop-light {
+	background-image: url('./assets/images/bg-desktop-light.jpg');
+}
+
+.bg-desktop-dark {
+	background-image: url('./assets/images/bg-desktop-dark.jpg');
+}

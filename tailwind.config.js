@@ -4,6 +4,9 @@ module.exports = {
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	theme: {
 		extend: {
+			container: {
+				center: true
+			},
 			backgroundImage: {
 				gradient:
 					'linear-gradient(192deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%))',
