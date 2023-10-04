@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-interface StateObject {
-	isLight: boolean;
-}
+import { ThemeSlice } from '../../models/types';
 
 const initialState = {
 	isLight: true,
@@ -12,10 +9,10 @@ const themeSlice = createSlice({
 	name: 'currentTheme',
 	initialState: initialState,
 	reducers: {
-		setTheme: (state: StateObject, action) => {
+		setTheme: (state: ThemeSlice, action) => {
 			state.isLight = action.payload;
 		},
-		toggleTheme: (state: StateObject) => {
+		toggleTheme: (state: ThemeSlice) => {
 			state.isLight = !state.isLight;
 		},
 	},

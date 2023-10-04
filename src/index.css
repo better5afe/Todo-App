@@ -20,6 +20,21 @@ form:focus-within {
 	stroke: #3a7bfd;
 }
 
+.delete-btn svg {
+	stroke: #d2d3db;
+}
+
+.dark .delete-btn svg {
+	stroke: #777a92;
+}
+
+.delete-btn:hover svg,
+.delete-btn:focus svg,
+.dark .delete-btn:hover svg,
+.dark .delete-btn:focus svg {
+	stroke: #3a7bfd;
+}
+
 input::placeholder {
 	color: #9394a5;
 }

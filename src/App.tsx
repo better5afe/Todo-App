@@ -4,6 +4,7 @@ import { setTheme } from './store/slices/themeSlice';
 import { checkMode } from './utils/mode-functions';
 import Header from './components/Header';
 import Main from './components/Main';
+import Footer from './components/Footer';
 
 export const App = () => {
 	const dispatch = useDispatch();
@@ -16,13 +17,13 @@ export const App = () => {
 		} else {
 			dispatch(setTheme(false));
 		}
-		
 	}, []);
 
 	return (
 		<>
 			<Header />
 			<Main />
+			<Footer />
 		</>
 	);
 };

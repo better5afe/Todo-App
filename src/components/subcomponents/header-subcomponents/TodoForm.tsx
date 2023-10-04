@@ -6,12 +6,15 @@ const TodoForm = () => {
 	const addTodoHandler = (event: React.FormEvent) => {
 		event.preventDefault();
 
-		inputRef && inputRef.current && console.log(inputRef.current.value);
+		if (inputRef && inputRef.current) {
+			console.log(inputRef.current.value);
+			inputRef.current.value = '';
+		}
 	};
 
 	return (
 		<form
-			className='h-12 md:h-16 flex border	border-transparent rounded-md overflow-hidden bg-white dark:bg-veryDarkAshBlue'
+			className='h-12 md:h-16 flex border	border-transparent rounded-md overflow-hidden bg-white dark:bg-veryDarkBlue'
 			onSubmit={addTodoHandler}
 		>
 			<div
@@ -20,7 +23,7 @@ const TodoForm = () => {
 					inputRef.current && inputRef.current.focus();
 				}}
 			>
-				<div className='w-5 md:w-6 h-5 md:h-6 rounded-full border border-lightGrayishBlue'></div>
+				<div className='w-5 md:w-6 h-5 md:h-6 rounded-full border border-lightGrayishBlue dark:border-ashBlue transition-colors duration-300 hover:border-brightBlue'></div>
 			</div>
 			<input
 				className='w-full pt-4 pb-3 pe-5 md:pe-7 bg-transparent outline-none text-sm md:text-lg text-veryDarkGrayishBlue dark:text-lightGrayishBlue caret-brightBlue'
