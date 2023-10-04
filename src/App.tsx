@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
-import { checkMode } from './utils/mode-functions';
+import { setInitialMode } from './utils/mode-functions';
 
 export const App = () => {
 	useEffect(() => {
-		checkMode();
+		setInitialMode();
 	}, []);
 
 	return (
 		<main>
+			testestest
 		</main>
 	);
 };
