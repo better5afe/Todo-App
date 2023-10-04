@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { AppStateObject, TodoProps } from '../../../models/types';
+import { AppStateObject } from '../../../models/types';
 import Todo from './Todo';
 import TodoListButton from '../../reusable/TodoListButton';
 import TodoListControls from './TodoListControls';

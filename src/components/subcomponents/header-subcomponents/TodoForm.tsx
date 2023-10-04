@@ -1,14 +1,27 @@
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTask } from '../../../store/slices/listSlice';
 
 const TodoForm = () => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
+
+	const dispatch = useDispatch();
 
 	const addTodoHandler = (event: React.FormEvent) => {
 		event.preventDefault();
 
 		if (inputRef && inputRef.current) {
-			console.log(inputRef.current.value);
-			inputRef.current.value = '';
+			const inputValue = inputRef.current.value;
+
+			inputValue.trim().length === 0 && console.log('error');
+
+			const newTodo = {
+				id: Math.random().toString(),
+				body: inputRef.current.value,
+				isCompleted: false,
+			};
+
+			dispatch(addTask(newTodo));
 		}
 	};
 
