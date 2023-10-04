@@ -1,26 +1,28 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { completeTask } from '../../../store/slices/listSlice';
 import { TodoProps } from '../../../models/types';
 import { deleteTodoHandler } from '../../../utils/todo-functions';
 import TodoCheckbox from '../../reusable/TodoCheckbox';
 import TodoDelete from '../../reusable/TodoDelete';
 
 const Todo: React.FC<TodoProps> = ({ id, body, isCompleted }) => {
-	const [isFinished, setIsFinished] = useState(isCompleted);
+
+	const dispatch = useDispatch();
 
 	const completeTodoHandler = () => {
-		setIsFinished(!isFinished);
+		dispatch(completeTask(id));
 	};
 
 	return (
 		<li
 			className={`flex justify-between items-center md:items-start px-5 py-5 text-veryDarkGrayishBlue dark:text-lightGrayishBlue ${
-				isFinished &&
+				isCompleted &&
 				'text-lightGrayishBlue dark:text-darkAshBlue italic line-through'
 			}`}
 		>
 			<div className='flex justify-between items-start '>
 				<TodoCheckbox
-					completed={isFinished}
+					completed={isCompleted}
 					onClick={completeTodoHandler}
 					onKeyDown={(e) => {
 						e.key === 'Enter' && completeTodoHandler();

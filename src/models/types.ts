@@ -12,6 +12,12 @@ export interface ListSlice {
 	tasksList: TodoProps[];
 }
 
+export enum ListTypes {
+	ALL = 'all',
+	ACTIVE = 'active',
+	COMPLETED = 'completed',
+}
+
 export interface AppStateObject {
 	theme: {
 		isLight: boolean;
@@ -19,6 +25,7 @@ export interface AppStateObject {
 	list: {
 		tasksList: TodoProps[];
 	};
+	listType: string;
 }
 
 export interface CheckboxProps {

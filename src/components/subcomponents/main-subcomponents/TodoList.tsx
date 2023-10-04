@@ -1,11 +1,14 @@
 import { useSelector } from 'react-redux';
-import { AppStateObject } from '../../../models/types';
+import { AppStateObject, ListTypes } from '../../../models/types';
 import Todo from './Todo';
 import TodoListButton from '../../reusable/TodoListButton';
 import TodoListControls from './TodoListControls';
 
 const TodoList = () => {
-	const todoList = useSelector((state: AppStateObject) => state.list.tasksList);
+	const { todoList, listType } = useSelector((state: AppStateObject) => ({
+		todoList: state.list.tasksList,
+		listType: state.listType,
+	}));
 
 	return (
 		<div className='absolute -top-10 left-[20px] lg:left-0 right-[20px] lg:right-0'>
@@ -25,7 +28,10 @@ const TodoList = () => {
 					</p>
 				)}
 				<div className='flex justify-between px-5 pt-5 pb-3'>
-					<p className='text-darkGrayishBlue'>5 items left</p>
+					<p className='text-darkGrayishBlue'>
+						{todoList.length} items{' '}
+						{listType === ListTypes.COMPLETED ? 'completed' : 'left'}
+					</p>
 					<div className='hidden md:flex justify-between min-w-[12rem]'>
 						<TodoListControls />
 					</div>

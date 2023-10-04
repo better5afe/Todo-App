@@ -1,19 +1,26 @@
+import { useDispatch } from 'react-redux';
+import {
+	allItems,
+	activeItems,
+	completedItems,
+} from '../../../store/slices/listTypeSlice';
 import TodoListButton from '../../reusable/TodoListButton';
 
 const TodoListControls = () => {
+	const dispatch = useDispatch();
+
 	return (
 		<>
 			<TodoListButton
 				text='All'
-				onClick={() => console.log('Show only active tasks')}
+				onClick={() => {
+					dispatch(allItems());
+				}}
 			/>
-			<TodoListButton
-				text='Active'
-				onClick={() => console.log('Show all tasks')}
-			/>
+			<TodoListButton text='Active' onClick={() => dispatch(activeItems())} />
 			<TodoListButton
 				text='Completed'
-				onClick={() => console.log('Show only completed tasks')}
+				onClick={() => dispatch(completedItems())}
 			/>
 		</>
 	);
