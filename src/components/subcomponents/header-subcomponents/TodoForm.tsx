@@ -6,7 +6,7 @@ import { useForm } from '../../../hooks/useForm';
 const TodoForm = () => {
 	const [inputErrorClass, setInputErrorClass] = useState('');
 	const inputRef = useRef<HTMLInputElement | null>(null);
-	const { isValid, checkFormValidity } = useForm();
+	const { checkFormValidity } = useForm();
 
 	const dispatch = useDispatch();
 
@@ -16,22 +16,20 @@ const TodoForm = () => {
 		if (inputRef && inputRef.current) {
 			const inputValue = inputRef.current.value;
 
-			checkFormValidity(inputValue);
-
-			if (!isValid) {
+			if (!checkFormValidity(inputValue)) {
 				setInputErrorClass('error');
 				return;
+			} else {
+				const newTodo = {
+					id: Math.random().toString(),
+					body: inputRef.current.value,
+					isCompleted: false,
+				};
+
+				dispatch(addTask(newTodo));
+				setInputErrorClass('');
+				inputRef.current.value = '';
 			}
-
-			const newTodo = {
-				id: Math.random().toString(),
-				body: inputRef.current.value,
-				isCompleted: false,
-			};
-
-			dispatch(addTask(newTodo));
-			setInputErrorClass('');
-			inputRef.current.value = '';
 		}
 	};
 
@@ -51,7 +49,11 @@ const TodoForm = () => {
 			<input
 				className={`${inputErrorClass} w-full pt-4 pb-3 pe-5 md:pe-7 bg-transparent outline-none text-sm md:text-lg text-veryDarkGrayishBlue dark:text-lightGrayishBlue caret-brightBlue`}
 				type='text'
-				placeholder='Create a new todo...'
+				placeholder={
+					inputErrorClass === ''
+						? 'Create a new todo...'
+						: 'Value cannot be empty'
+				}
 				ref={inputRef}
 			/>
 		</form>

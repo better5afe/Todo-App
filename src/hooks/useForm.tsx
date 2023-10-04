@@ -1,15 +1,16 @@
-import { useState } from 'react';
-
 export const useForm = () => {
-	const [isValid, setIsValid] = useState(false);
+	let formValidity;
 
 	const checkFormValidity = (value: string) => {
 		if (value.trim().length === 0) {
-			setIsValid(false);
+			formValidity = false;
+
 		} else {
-			setIsValid(true);
+			formValidity = true;
 		}
+
+		return formValidity;
 	};
 
-	return { isValid, checkFormValidity };
+	return { checkFormValidity };
 };

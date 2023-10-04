@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { resetList } from '../../../store/slices/listSlice';
 import { AppStateObject, ListTypes } from '../../../models/types';
 import Todo from './Todo';
 import TodoListButton from '../../reusable/TodoListButton';
@@ -9,6 +10,8 @@ const TodoList = () => {
 		todoList: state.list.tasksList,
 		listType: state.listType,
 	}));
+
+	const dispatch = useDispatch();
 
 	return (
 		<div className='absolute -top-10 left-[20px] lg:left-0 right-[20px] lg:right-0'>
@@ -37,7 +40,7 @@ const TodoList = () => {
 					</div>
 					<TodoListButton
 						text='Clear Completed'
-						onClick={() => console.log('Show only active tasks')}
+						onClick={() => dispatch(resetList())}
 					/>
 				</div>
 			</ul>
