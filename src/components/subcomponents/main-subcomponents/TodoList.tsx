@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { resetList } from '../../../store/slices/listSlice';
+import { clearCompleted } from '../../../store/slices/listSlice';
 import { AppStateObject, ListTypes } from '../../../models/types';
 import Todo from './Todo';
 import TodoListButton from '../../reusable/TodoListButton';
@@ -7,7 +7,7 @@ import TodoListControls from './TodoListControls';
 
 const TodoList = () => {
 	const { todoList, listType } = useSelector((state: AppStateObject) => ({
-		todoList: state.list.tasksList,
+		todoList: state.list.filteredList,
 		listType: state.listType,
 	}));
 
@@ -40,13 +40,14 @@ const TodoList = () => {
 					</div>
 					<TodoListButton
 						text='Clear Completed'
-						onClick={() => dispatch(resetList())}
+						onClick={() => dispatch(clearCompleted())}
 					/>
 				</div>
 			</ul>
 			<div className='flex md:hidden justify-evenly py-3 px-14 my-8 bg-white dark:bg-veryDarkBlue rounded-md'>
 				<TodoListControls />
 			</div>
+			<p>Drag and drop to reorder the list</p>
 		</div>
 	);
 };

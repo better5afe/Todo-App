@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../../../store/slices/listSlice';
+import { showAllTasks } from '../../../store/slices/listSlice';
+import { allItems } from '../../../store/slices/listTypeSlice';
 import { useForm } from '../../../hooks/useForm';
 
 const TodoForm = () => {
@@ -27,6 +29,8 @@ const TodoForm = () => {
 				};
 
 				dispatch(addTask(newTodo));
+				dispatch(allItems());
+				dispatch(showAllTasks());
 				setInputErrorClass('');
 				inputRef.current.value = '';
 			}

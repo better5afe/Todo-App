@@ -10,6 +10,7 @@ export interface ThemeSlice {
 
 export interface ListSlice {
 	tasksList: TodoProps[];
+	filteredList: TodoProps[];
 }
 
 export enum ListTypes {
@@ -24,6 +25,7 @@ export interface AppStateObject {
 	};
 	list: {
 		tasksList: TodoProps[];
+		filteredList: TodoProps[];
 	};
 	listType: string;
 }

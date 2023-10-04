@@ -3,6 +3,7 @@ import { ListSlice } from '../../models/types';
 
 const initialState: ListSlice = {
 	tasksList: [],
+	filteredList: [],
 };
 
 export const listSlice = createSlice({
@@ -21,6 +22,7 @@ export const listSlice = createSlice({
 			});
 
 			state.tasksList = updatedTasks;
+			state.filteredList = updatedTasks;
 		},
 		deleteTask(state, action) {
 			const updatedTasks = state.tasksList.filter(
@@ -28,9 +30,32 @@ export const listSlice = createSlice({
 			);
 
 			state.tasksList = updatedTasks;
+			state.filteredList = updatedTasks;
 		},
-		resetList: (state) => {
-			state.tasksList = [];
+		clearCompleted: (state) => {
+			const activeTasks = state.tasksList.filter(
+				(item) => item.isCompleted === false
+			);
+
+			state.tasksList = activeTasks;
+			state.filteredList = activeTasks;
+		},
+		showAllTasks: (state) => {
+			state.filteredList = state.tasksList;
+		},
+		showActiveTasks: (state) => {
+			const activeTasks = state.tasksList.filter(
+				(task) => task.isCompleted === false
+			);
+
+			state.filteredList = activeTasks;
+		},
+		showCompletedTasks: (state) => {
+			const completedTasks = state.tasksList.filter(
+				(task) => task.isCompleted === true
+			);
+
+			state.filteredList = completedTasks;
 		},
 	},
 });
@@ -39,6 +64,9 @@ export const {
 	addTask,
 	completeTask,
 	deleteTask,
-	resetList,
+	clearCompleted,
+	showAllTasks,
+	showActiveTasks,
+	showCompletedTasks,
 } = listSlice.actions;
 export default listSlice.reducer;

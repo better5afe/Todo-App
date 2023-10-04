@@ -2,8 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+	background: #e4e5f1;
+}
+
+.dark body {
+	background: #161722;
+}
+
 .header-bg {
 	background-image: url('./assets/images/bg-mobile-light.jpg');
+}
+
+.dark .header-bg {
+	background-image: url('./assets/images/bg-mobile-dark.jpg');
 }
 
 form:focus-within {
@@ -25,7 +37,7 @@ form:focus-within {
 }
 
 .dark .delete-btn svg {
-	stroke: #393a4c
+	stroke: #393a4c;
 }
 
 .delete-btn:hover svg,
@@ -43,15 +55,10 @@ input.error::placeholder {
 	color: #c54040;
 }
 
-.dark {
-	.header-bg {
-		background-image: url('./assets/images/bg-mobile-dark.jpg');
-	}
-
-	input.error::placeholder {
+.dark input.error::placeholder {
 		color: #f25f5f;
-	}
 }
+
 
 @media (min-width: 768px) {
 	.header-bg {

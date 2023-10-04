@@ -4,6 +4,11 @@ import {
 	activeItems,
 	completedItems,
 } from '../../../store/slices/listTypeSlice';
+import {
+	showAllTasks,
+	showActiveTasks,
+	showCompletedTasks,
+} from '../../../store/slices/listSlice';
 import TodoListButton from '../../reusable/TodoListButton';
 
 const TodoListControls = () => {
@@ -15,12 +20,22 @@ const TodoListControls = () => {
 				text='All'
 				onClick={() => {
 					dispatch(allItems());
+					dispatch(showAllTasks());
 				}}
 			/>
-			<TodoListButton text='Active' onClick={() => dispatch(activeItems())} />
+			<TodoListButton
+				text='Active'
+				onClick={() => {
+					dispatch(activeItems());
+					dispatch(showActiveTasks());
+				}}
+			/>
 			<TodoListButton
 				text='Completed'
-				onClick={() => dispatch(completedItems())}
+				onClick={() => {
+					dispatch(completedItems());
+					dispatch(showCompletedTasks());
+				}}
 			/>
 		</>
 	);
