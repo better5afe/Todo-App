@@ -2,18 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-mobile-light {
+.header-bg {
 	background-image: url('./assets/images/bg-mobile-light.jpg');
 }
 
-.bg-mobile-dark {
-	background-image: url('./assets/images/bg-mobile-dark.jpg');
+form:focus-within {
+	border: 1px solid #3a7bfd;
 }
 
-.bg-desktop-light {
-	background-image: url('./assets/images/bg-desktop-light.jpg');
+.theme-switcher svg {
+	transition: fill 0.3s, stroke 0.3s;
 }
 
-.bg-desktop-dark {
-	background-image: url('./assets/images/bg-desktop-dark.jpg');
+.theme-switcher:hover svg,
+.theme-switcher:focus svg {
+	fill: #3a7bfd;
+	stroke: #3a7bfd;
+}
+
+input::placeholder {
+	color: #9394a5;
+}
+
+input.error::placeholder {
+	color: #c54040;
+}
+
+.dark {
+	.header-bg {
+		background-image: url('./assets/images/bg-mobile-dark.jpg');
+	}
+
+	input.error::placeholder {
+		color: #f25f5f;
+	}
+}
+
+@media (min-width: 768px) {
+	.header-bg {
+		background-image: url('./assets/images/bg-desktop-light.jpg');
+	}
+
+	.dark {
+		.header-bg {
+			background-image: url('./assets/images/bg-desktop-dark.jpg');
+		}
+	}
 }

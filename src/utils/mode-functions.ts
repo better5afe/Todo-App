@@ -5,8 +5,6 @@ export const checkMode = () => {
 	const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)')
 		.matches;
 
-	document.body.classList.add('text-18');
-
 	if (savedTheme === 'dark' || (!savedTheme && preferredTheme)) {
 		document.documentElement.classList.add('dark');
 		currentTheme = 'dark';
