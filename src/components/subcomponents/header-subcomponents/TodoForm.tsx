@@ -1,9 +1,10 @@
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../../../store/slices/listSlice';
 import { useForm } from '../../../hooks/useForm';
 
 const TodoForm = () => {
+	const [inputErrorClass, setInputErrorClass] = useState('');
 	const inputRef = useRef<HTMLInputElement | null>(null);
 	const { isValid, checkFormValidity } = useForm();
 
@@ -18,7 +19,7 @@ const TodoForm = () => {
 			checkFormValidity(inputValue);
 
 			if (!isValid) {
-				console.log('error');
+				setInputErrorClass('error');
 				return;
 			}
 
@@ -29,6 +30,7 @@ const TodoForm = () => {
 			};
 
 			dispatch(addTask(newTodo));
+			setInputErrorClass('');
 			inputRef.current.value = '';
 		}
 	};
@@ -47,7 +49,7 @@ const TodoForm = () => {
 				<div className='w-5 md:w-6 h-5 md:h-6 rounded-full border border-lightGrayishBlue dark:border-veryDarkAshBlue transition-colors duration-300 hover:border-brightBlue'></div>
 			</div>
 			<input
-				className='w-full pt-4 pb-3 pe-5 md:pe-7 bg-transparent outline-none text-sm md:text-lg text-veryDarkGrayishBlue dark:text-lightGrayishBlue caret-brightBlue'
+				className={`${inputErrorClass} w-full pt-4 pb-3 pe-5 md:pe-7 bg-transparent outline-none text-sm md:text-lg text-veryDarkGrayishBlue dark:text-lightGrayishBlue caret-brightBlue`}
 				type='text'
 				placeholder='Create a new todo...'
 				ref={inputRef}
