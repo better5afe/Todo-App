@@ -1,18 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { completeTask, deleteTask } from '../../../store/slices/listSlice';
+import { allItems } from '../../../store/slices/listTypeSlice';
 import { TodoProps } from '../../../models/types';
 import TodoCheckbox from '../../reusable/TodoCheckbox';
 import TodoDelete from '../../reusable/TodoDelete';
 
-const Todo: React.FC<TodoProps> = ({
-	id,
-	body,
-	isCompleted,
-}) => {
+const Todo: React.FC<TodoProps> = ({ id, body, isCompleted }) => {
 	const dispatch = useDispatch();
 
 	const completeTodoHandler = () => {
 		dispatch(completeTask(id));
+		dispatch(allItems());
 	};
 
 	return (
@@ -32,7 +30,12 @@ const Todo: React.FC<TodoProps> = ({
 				/>
 				<p>{body}</p>
 			</div>
-			<TodoDelete onClick={() => dispatch(deleteTask(id))} />
+			<TodoDelete
+				onClick={() => {
+					dispatch(deleteTask(id));
+					dispatch(allItems());
+				}}
+			/>
 		</li>
 	);
 };

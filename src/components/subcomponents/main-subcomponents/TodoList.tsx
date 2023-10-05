@@ -110,6 +110,12 @@ const TodoList = () => {
 						/>
 					</div>
 				</ul>
+				<div className='flex md:hidden justify-evenly py-3 px-14 my-8 bg-white dark:bg-veryDarkBlue rounded-md'>
+					<TodoListControls />
+				</div>
+				<p className='md:pt-10 text-sm lg:text-lg text-darkGrayishBlue dark:text-ashBlue text-center'>
+					Drag and drop to reorder the list
+				</p>
 			</div>
 		</DragDropContext>
 	);
