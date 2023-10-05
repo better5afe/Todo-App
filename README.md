@@ -16,6 +16,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 
 The users are able to:
 - Add new todos - if they try to submit an empty form, they will receive an error.
+- See already added todos after reloading the page - they are storoed within the localStorage.
 - Mark todos completed and then make them active again.
 - Delete single todos.
 - Delete all of the compeleted todos in a bulk.
