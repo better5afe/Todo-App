@@ -6,6 +6,11 @@ const initialState: ListSlice = {
 	filteredList: [],
 };
 
+interface ActionObject {
+	type: string;
+	payload: TodoProps[];
+}
+
 const updateLocalStorage = (updatedValue: TodoProps[]) => {
 	localStorage.removeItem('todos');
 	localStorage.setItem('todos', JSON.stringify(updatedValue));
@@ -70,6 +75,11 @@ export const listSlice = createSlice({
 
 			state.filteredList = completedTasks;
 		},
+		reorderTasks: (state, action: ActionObject) => {
+			state.filteredList = action.payload;
+
+			updateLocalStorage(action.payload);
+		},
 	},
 });
 
@@ -82,5 +92,6 @@ export const {
 	showAllTasks,
 	showActiveTasks,
 	showCompletedTasks,
+	reorderTasks
 } = listSlice.actions;
 export default listSlice.reducer;

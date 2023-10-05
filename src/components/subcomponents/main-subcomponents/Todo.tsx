@@ -4,7 +4,11 @@ import { TodoProps } from '../../../models/types';
 import TodoCheckbox from '../../reusable/TodoCheckbox';
 import TodoDelete from '../../reusable/TodoDelete';
 
-const Todo: React.FC<TodoProps> = ({ id, body, isCompleted }) => {
+const Todo: React.FC<TodoProps> = ({
+	id,
+	body,
+	isCompleted,
+}) => {
 	const dispatch = useDispatch();
 
 	const completeTodoHandler = () => {
@@ -15,7 +19,7 @@ const Todo: React.FC<TodoProps> = ({ id, body, isCompleted }) => {
 		<li
 			className={`flex justify-between items-center md:items-start px-5 py-5 text-veryDarkGrayishBlue dark:text-lightGrayishBlue ${
 				isCompleted &&
-				'text-lightGrayishBlue dark:text-darkAshBlue italic line-through'
+				'text-darkGrayishBlue dark:text-darkGrayishBlue italic line-through'
 			}`}
 		>
 			<div className='flex justify-between items-start '>
