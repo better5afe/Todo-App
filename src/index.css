@@ -56,18 +56,19 @@ input.error::placeholder {
 }
 
 .dark input.error::placeholder {
-		color: #f25f5f;
+	color: #f25f5f;
 }
 
+.active {
+	color: #719ffa;
+}
 
 @media (min-width: 768px) {
 	.header-bg {
 		background-image: url('./assets/images/bg-desktop-light.jpg');
 	}
 
-	.dark {
-		.header-bg {
-			background-image: url('./assets/images/bg-desktop-dark.jpg');
-		}
+	.dark .header-bg {
+		background-image: url('./assets/images/bg-desktop-dark.jpg');
 	}
 }

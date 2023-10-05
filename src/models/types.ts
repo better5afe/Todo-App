@@ -42,5 +42,6 @@ export interface DeleteTodoProps {
 
 export interface TodoListButtonProps {
 	text: string;
+	isActive?: boolean;
 	onClick: () => void;
 }

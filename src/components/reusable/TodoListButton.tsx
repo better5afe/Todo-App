@@ -1,9 +1,9 @@
 import { TodoListButtonProps } from '../../models/types';
 
-const TodoListButton: React.FC<TodoListButtonProps> = ({ text, onClick }) => {
+const TodoListButton: React.FC<TodoListButtonProps> = ({ text, isActive, onClick }) => {
 	return (
 		<button
-			className='text-darkGrayishBlue outline-none transition-colors duration-300 hover:text-brightBlue focus:text-brightBlue'
+			className={`text-darkGrayishBlue ${isActive && 'active'} outline-none transition-colors duration-300 hover:text-brightBlue focus:text-brightBlue`}
 			onClick={onClick}
 		>
 			{text}
