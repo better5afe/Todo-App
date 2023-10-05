@@ -19,15 +19,11 @@ module.exports = {
 			},
 			colors: {
 				brightBlue: '#3a7bfd',
-
-				//light mode
 				lightGray: '#fafafa',
 				veryLightGrayishBlue: '#e4e5f1',
 				lightGrayishBlue: '#d2d3db',
 				darkGrayishBlue: '#9394a5',
 				veryDarkGrayishBlue: '#484b6a',
-
-				//dark mode
 				darkBlue: '#161722',
 				veryDarkBlue: '#25273c',
 				ashBlue: '#777a92',

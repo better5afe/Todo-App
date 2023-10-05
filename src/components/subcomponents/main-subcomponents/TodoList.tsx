@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCompleted } from '../../../store/slices/listSlice';
+import { allItems } from '../../../store/slices/listTypeSlice';
 import { AppStateObject, ListTypes } from '../../../models/types';
 import Todo from './Todo';
 import TodoListButton from '../../reusable/TodoListButton';
@@ -10,6 +11,15 @@ const TodoList = () => {
 		todoList: state.list.filteredList,
 		listType: state.listType,
 	}));
+
+	const activeItems = todoList.filter((todo) => todo.isCompleted === false)
+		.length;
+
+	const completedItems = todoList.filter((todo) => todo.isCompleted === true)
+		.length;
+
+	const arrayLength =
+		listType === ListTypes.COMPLETED ? completedItems : activeItems;
 
 	const dispatch = useDispatch();
 
@@ -32,7 +42,8 @@ const TodoList = () => {
 				)}
 				<div className='flex justify-between px-5 pt-5 pb-3'>
 					<p className='text-darkGrayishBlue'>
-						{todoList.length} items{' '}
+						{arrayLength}
+						{arrayLength === 1 ? ' item ' : ' items '}
 						{listType === ListTypes.COMPLETED ? 'completed' : 'left'}
 					</p>
 					<div className='hidden md:flex justify-between min-w-[12rem]'>
@@ -40,14 +51,19 @@ const TodoList = () => {
 					</div>
 					<TodoListButton
 						text='Clear Completed'
-						onClick={() => dispatch(clearCompleted())}
+						onClick={() => {
+							dispatch(clearCompleted());
+							dispatch(allItems());
+						}}
 					/>
 				</div>
 			</ul>
 			<div className='flex md:hidden justify-evenly py-3 px-14 my-8 bg-white dark:bg-veryDarkBlue rounded-md'>
 				<TodoListControls />
 			</div>
-			<p>Drag and drop to reorder the list</p>
+			<p className='pt-5 text-sm lg:text-lg text-darkGrayishBlue dark:text-ashBlue text-center'>
+				Drag and drop to reorder the list
+			</p>
 		</div>
 	);
 };
