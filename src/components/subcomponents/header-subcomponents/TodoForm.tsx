@@ -30,7 +30,7 @@ const TodoForm = () => {
 
 				dispatch(addTask(newTodo));
 				dispatch(allItems());
-				dispatch(showAllTasks());
+				dispatch(showAllTasks())
 				setInputErrorClass('');
 				inputRef.current.value = '';
 			}

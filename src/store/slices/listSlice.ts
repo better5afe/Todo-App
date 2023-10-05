@@ -1,17 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ListSlice } from '../../models/types';
+import { ListSlice, TodoProps } from '../../models/types';
 
 const initialState: ListSlice = {
 	tasksList: [],
 	filteredList: [],
 };
 
+const updateLocalStorage = (updatedValue: TodoProps[]) => {
+	localStorage.removeItem('todos');
+	localStorage.setItem('todos', JSON.stringify(updatedValue));
+};
+
 export const listSlice = createSlice({
 	name: 'listSlice',
 	initialState: initialState,
 	reducers: {
+		setTaskslist: (state, action) => {
+			state.tasksList = action.payload;
+			state.filteredList = action.payload;
+		},
 		addTask: (state, action) => {
 			state.tasksList = [...state.tasksList, action.payload];
+			localStorage.setItem('todos', JSON.stringify(state.tasksList));
 		},
 		completeTask: (state, action) => {
 			const updatedTasks = state.tasksList.map((task) => {
@@ -23,6 +33,7 @@ export const listSlice = createSlice({
 
 			state.tasksList = updatedTasks;
 			state.filteredList = updatedTasks;
+			updateLocalStorage(updatedTasks);
 		},
 		deleteTask(state, action) {
 			const updatedTasks = state.tasksList.filter(
@@ -31,14 +42,16 @@ export const listSlice = createSlice({
 
 			state.tasksList = updatedTasks;
 			state.filteredList = updatedTasks;
+			updateLocalStorage(updatedTasks);
 		},
 		clearCompleted: (state) => {
-			const activeTasks = state.tasksList.filter(
+			const updatedTasks = state.tasksList.filter(
 				(item) => item.isCompleted === false
 			);
 
-			state.tasksList = activeTasks;
-			state.filteredList = activeTasks;
+			state.tasksList = updatedTasks;
+			state.filteredList = updatedTasks;
+			updateLocalStorage(updatedTasks);
 		},
 		showAllTasks: (state) => {
 			state.filteredList = state.tasksList;
@@ -61,6 +74,7 @@ export const listSlice = createSlice({
 });
 
 export const {
+	setTaskslist,
 	addTask,
 	completeTask,
 	deleteTask,
