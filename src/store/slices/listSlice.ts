@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ListSlice, TodoProps } from '../../models/types';
+import { updateLocalStorage } from '../../utils/local-storage-functions';
 
 const initialState: ListSlice = {
 	tasksList: [],
@@ -11,10 +12,7 @@ interface ActionObject {
 	payload: TodoProps[];
 }
 
-const updateLocalStorage = (updatedValue: TodoProps[]) => {
-	localStorage.removeItem('todos');
-	localStorage.setItem('todos', JSON.stringify(updatedValue));
-};
+
 
 export const listSlice = createSlice({
 	name: 'listSlice',
@@ -77,8 +75,6 @@ export const listSlice = createSlice({
 		},
 		reorderTasks: (state, action: ActionObject) => {
 			state.filteredList = action.payload;
-
-			updateLocalStorage(action.payload);
 		},
 	},
 });

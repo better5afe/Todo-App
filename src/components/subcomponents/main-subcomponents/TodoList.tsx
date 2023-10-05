@@ -1,11 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import {
-	setTaskslist,
-	clearCompleted,
-	reorderTasks,
-} from '../../../store/slices/listSlice';
+import { clearCompleted, reorderTasks } from '../../../store/slices/listSlice';
 import { allItems } from '../../../store/slices/listTypeSlice';
 import { AppStateObject, ListTypes } from '../../../models/types';
+import { updateLocalStorage } from '../../../utils/local-storage-functions';
 import {
 	DragDropContext,
 	Droppable,
@@ -48,8 +45,10 @@ const TodoList = () => {
 				srcContainer.index,
 				destContainer.index
 			);
-	
-			dispatch(reorderTasks(reorderedTodos)); 
+
+			dispatch(reorderTasks(reorderedTodos));
+
+			listType === ListTypes.ALL && updateLocalStorage(reorderedTodos);
 		}
 	};
 
